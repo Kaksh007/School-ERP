@@ -173,15 +173,3 @@ After running `npm run seed`, you can log in with any of the following accounts:
 3. Attendance is marked per subject per day (not per class period)
 4. Super Admin is seeded, not self-registered
 5. Email addresses are globally unique across all schools
-
-## Possible Improvements
-1. **Class/Section support** — Group students into classes for easier attendance
-2. **Password reset** — Email-based password recovery flow
-3. **Pagination** — API-level pagination for large datasets
-4. **Audit logging** — Track who created/modified/deleted records
-5. **File uploads** — Student/teacher profile photos
-6. **Reports** — Exportable attendance reports (CSV/PDF)
-7. **Real-time updates** — WebSocket for live attendance tracking
-8. **Mobile responsive** — Hamburger menu for sidebar on small screens
-9. **Dark mode** — Theme toggle support
-10. **Rate limiting** — Protect API endpoints from abuse
