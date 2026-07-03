@@ -19,3 +19,13 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+table {
+  min-width: 720px;
+}
+
+input,
+select,
+button {
+  max-width: 100%;
+}

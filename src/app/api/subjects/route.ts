@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import { getAuthUser, requireRole, getTenantFilter } from "@/lib/auth";
 import Subject from "@/lib/models/Subject";
+import User from "@/lib/models/User";
 
 export async function GET(request: NextRequest) {
   try {
@@ -50,6 +51,21 @@ export async function POST(request: NextRequest) {
     }
 
     await connectDB();
+
+    if (teacherId) {
+      const teacher = await User.findOne({
+        _id: teacherId,
+        role: "teacher",
+        schoolId: targetSchoolId,
+      });
+
+      if (!teacher) {
+        return NextResponse.json(
+          { success: false, error: "Teacher not found in this school" },
+          { status: 400 }
+        );
+      }
+    }
 
     const subject = await Subject.create({
       name,

@@ -45,7 +45,7 @@ export default function DashboardPage() {
       <h1 className="text-2xl font-bold text-gray-900 mb-6">Dashboard</h1>
 
       {user?.role === "super_admin" && data && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
           <StatsCard title="Total Schools" value={data.totalSchools ?? 0} color="blue" />
           <StatsCard title="Teachers" value={data.totalTeachers ?? 0} color="green" />
           <StatsCard title="Students" value={data.totalStudents ?? 0} color="purple" />
@@ -60,7 +60,7 @@ export default function DashboardPage() {
       )}
 
       {user?.role === "student" && data && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <StatsCard title="My Subjects" value={data.totalSubjects ?? 0} color="blue" />
           <StatsCard
             title="Attendance"
@@ -72,7 +72,7 @@ export default function DashboardPage() {
       )}
 
       {user?.role === "school_admin" && data && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <StatsCard title="Students" value={data.totalStudents ?? 0} color="blue" />
           <StatsCard title="Teachers" value={data.totalTeachers ?? 0} color="green" />
           <StatsCard title="Subjects" value={data.totalSubjects ?? 0} color="purple" />
@@ -86,7 +86,7 @@ export default function DashboardPage() {
       )}
 
       {user?.role === "teacher" && data && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <StatsCard title="Students" value={data.totalStudents ?? 0} color="blue" />
           <StatsCard title="My Subjects" value={data.totalSubjects ?? 0} color="purple" />
           <StatsCard

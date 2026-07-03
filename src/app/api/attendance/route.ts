@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
     const user = await getAuthUser(request);
     if (!user) return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
 
-    const roleError = requireRole(user, "super_admin", "school_admin", "teacher");
+    const roleError = requireRole(user, "school_admin", "teacher");
     if (roleError) return roleError;
 
     const { records, subjectId, date } = await request.json();

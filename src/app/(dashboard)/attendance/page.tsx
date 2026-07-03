@@ -273,7 +273,7 @@ export default function AttendancePage() {
             <button type="button" onClick={() => markAll("absent")} className="text-xs px-3 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200">All Absent</button>
           </div>
 
-          <div className="bg-white rounded-lg shadow overflow-hidden">
+          <div className="bg-white rounded-lg shadow overflow-x-auto">
             <table className="w-full">
               <thead className="bg-gray-50 border-b">
                 <tr>
@@ -329,7 +329,7 @@ export default function AttendancePage() {
           <button
             type="submit"
             disabled={submitting || students.length === 0}
-            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 font-medium"
+            className="w-full sm:w-auto bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 font-medium"
           >
             {submitting ? "Submitting..." : "Mark Attendance"}
           </button>
@@ -383,7 +383,7 @@ export default function AttendancePage() {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
             </div>
           ) : (
-            <div className="bg-white rounded-lg shadow overflow-hidden">
+            <div className="bg-white rounded-lg shadow overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-gray-50 border-b">
                   <tr>
