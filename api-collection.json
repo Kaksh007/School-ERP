@@ -1,0 +1,438 @@
+{
+  "info": {
+    "name": "School ERP API",
+    "description": "Multi-Tenant School ERP System API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login - Super Admin",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.success) {",
+                  "  pm.collectionVariables.set('token', jsonData.data.token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"superadmin@erp.com\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/login"
+          }
+        },
+        {
+          "name": "Login - School Admin (DPS)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.success) {",
+                  "  pm.collectionVariables.set('token', jsonData.data.token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@dps.edu\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/login"
+          }
+        },
+        {
+          "name": "Login - Teacher",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.success) {",
+                  "  pm.collectionVariables.set('token', jsonData.data.token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"anita@dps.edu\",\n  \"password\": \"teacher123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/login"
+          }
+        },
+        {
+          "name": "Login - Student",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.success) {",
+                  "  pm.collectionVariables.set('token', jsonData.data.token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"amit@dps.edu\",\n  \"password\": \"student123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/login"
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/auth/me"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Schools",
+      "item": [
+        {
+          "name": "List Schools",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/schools"
+          }
+        },
+        {
+          "name": "Create School",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New School\",\n  \"address\": \"789 Test Road\",\n  \"phone\": \"+91 12 3456 7890\",\n  \"email\": \"info@newschool.edu\"\n}"
+            },
+            "url": "{{baseUrl}}/api/schools"
+          }
+        },
+        {
+          "name": "Get School by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/schools/:id"
+          }
+        },
+        {
+          "name": "Update School",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated School Name\"\n}"
+            },
+            "url": "{{baseUrl}}/api/schools/:id"
+          }
+        },
+        {
+          "name": "Delete School",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/schools/:id"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Teachers",
+      "item": [
+        {
+          "name": "List Teachers",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/teachers"
+          }
+        },
+        {
+          "name": "Add Teacher",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New Teacher\",\n  \"email\": \"newteacher@dps.edu\",\n  \"password\": \"teacher123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/teachers"
+          }
+        },
+        {
+          "name": "Get Teacher by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/teachers/:id"
+          }
+        },
+        {
+          "name": "Update Teacher",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Teacher Name\"\n}"
+            },
+            "url": "{{baseUrl}}/api/teachers/:id"
+          }
+        },
+        {
+          "name": "Delete Teacher",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/teachers/:id"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Students",
+      "item": [
+        {
+          "name": "List Students",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/students"
+          }
+        },
+        {
+          "name": "Search Students",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/students?search=amit",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students"],
+              "query": [
+                { "key": "search", "value": "amit" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Student",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New Student\",\n  \"email\": \"newstudent@dps.edu\",\n  \"password\": \"student123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/students"
+          }
+        },
+        {
+          "name": "Get Student by ID",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/students/:id"
+          }
+        },
+        {
+          "name": "Update Student",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Student Name\"\n}"
+            },
+            "url": "{{baseUrl}}/api/students/:id"
+          }
+        },
+        {
+          "name": "Delete Student",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/students/:id"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Subjects",
+      "item": [
+        {
+          "name": "List Subjects",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/subjects"
+          }
+        },
+        {
+          "name": "Create Subject",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"History\",\n  \"code\": \"HIST101\"\n}"
+            },
+            "url": "{{baseUrl}}/api/subjects"
+          }
+        },
+        {
+          "name": "Assign Teacher to Subject",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teacherId\": \"<teacher_id>\"\n}"
+            },
+            "url": "{{baseUrl}}/api/subjects/:id"
+          }
+        },
+        {
+          "name": "Delete Subject",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/subjects/:id"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Attendance",
+      "item": [
+        {
+          "name": "Mark Attendance",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subjectId\": \"<subject_id>\",\n  \"date\": \"2026-07-03\",\n  \"records\": [\n    { \"studentId\": \"<student_id_1>\", \"status\": \"present\" },\n    { \"studentId\": \"<student_id_2>\", \"status\": \"absent\" },\n    { \"studentId\": \"<student_id_3>\", \"status\": \"late\" }\n  ]\n}"
+            },
+            "url": "{{baseUrl}}/api/attendance"
+          }
+        },
+        {
+          "name": "View Attendance - All",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/attendance"
+          }
+        },
+        {
+          "name": "View Attendance - By Date",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/attendance?date=2026-07-03",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "attendance"],
+              "query": [
+                { "key": "date", "value": "2026-07-03" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "View Attendance - By Subject",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/attendance?subjectId=<subject_id>",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "attendance"],
+              "query": [
+                { "key": "subjectId", "value": "<subject_id>" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Get Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/dashboard"
+          }
+        }
+      ]
+    }
+  ]
+}
